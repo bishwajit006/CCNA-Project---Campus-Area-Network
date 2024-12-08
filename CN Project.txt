@@ -1,0 +1,44 @@
+-> multi layer swith for making trunk port
+
+int fa0/1
+switchport trunk encapsulation dot1q
+switchport mode trunk
+exit
+
+-> Router config for vlan
+
+int fa1/0.60
+encapsulation dot1Q 60
+ip address 192.168.60.1 255.255.255.0
+exit
+
+-> dhcp config
+
+ip dhcp pool textile
+network 192.168.60.0 255.255.255.0
+default-router 192.168.60.1
+dns-server 192.168.120.3
+exit
+
+-> RIP V2
+
+router rip
+version 2
+
+network 10.10.10.4
+network 10.10.10.8
+network 10.10.10.0
+network 192.168.10.0
+network 192.168.20.0
+network 192.168.30.0
+network 192.168.40.0
+network 192.168.50.0
+network 192.168.60.0
+network 192.168.120.0
+exit
+
+
+
+
+
+
